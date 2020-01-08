@@ -9,6 +9,8 @@
     {% if meta.use_title_tag %}
         {% if meta.title %}{% title_prop meta.title %}{% endif %}
     {% endif %}
+    {% if meta.favicon %}{% favicon meta.favicon %}{% endif %}
+    {% if meta.robots %}{% robots meta.robots %}{% endif %}
     {% if meta.use_og %}
         {% if meta.og_title %}{% og_prop 'title' meta.og_title %}
         {% elif meta.title %}{% og_prop 'title' meta.title %}{% endif %}

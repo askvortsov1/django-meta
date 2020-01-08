@@ -16,11 +16,11 @@ class Meta(object):
 
     def __init__(self, **kwargs):
         self.use_sites = kwargs.get('use_sites', settings.USE_SITES)
-        self.title = kwargs.get('title')
-        self.og_title = kwargs.get('og_title')
-        self.twitter_title = kwargs.get('twitter_title')
-        self.gplus_title = kwargs.get('gplus_title')
-        self.description = kwargs.get('description')
+        self.title = kwargs.get('title', settings.DEFAULT_TITLE)
+        self.og_title = kwargs.get('og_title', settings.DEFAULT_TITLE)
+        self.twitter_title = kwargs.get('twitter_title', settings.DEFAULT_TITLE)
+        self.gplus_title = kwargs.get('gplus_title', settings.DEFAULT_TITLE)
+        self.description = kwargs.get('description', settings.DEFAULT_DESCRIPTION)
         self.extra_props = kwargs.get('extra_props')
         self.extra_custom_props = kwargs.get('extra_custom_props')
         self.custom_namespace = kwargs.get('custom_namespace', settings.OG_NAMESPACES)
@@ -29,6 +29,7 @@ class Meta(object):
         self.image = kwargs.get('image')
         self.image_width = kwargs.get('image_width')
         self.image_height = kwargs.get('image_height')
+        self.favicon = kwargs.get('favicon', settings.FAVICON_URL)
         self.object_type = kwargs.get('object_type', settings.SITE_TYPE)
         self.site_name = kwargs.get('site_name', settings.SITE_NAME)
         self.twitter_site = kwargs.get('twitter_site')
@@ -47,6 +48,9 @@ class Meta(object):
         self.fb_pages = kwargs.get('fb_pages', settings.FB_PAGES)
         self.og_app_id = kwargs.get('og_app_id', settings.FB_APPID)
         self.request = kwargs.get('request', None)
+        self.page_header = kwargs.get('page_header', None, settings.DEFAULT_PAGE_HEADER)
+        self.banner = kwargs.get('banner', settings.DEFAULT_BANNER)
+        self.robots = kwargs.get('robots', settings.DEFAULT_ROBOTS)
 
     def get_domain(self):
         if self.use_sites:
@@ -131,6 +135,7 @@ class MetadataMixin(object):
     meta_class = Meta
     context_meta_name = 'meta'
 
+    favicon = None
     title = None
     og_title = None
     twitter_title = None
@@ -155,6 +160,9 @@ class MetadataMixin(object):
     gplus_type = None
     gplus_author = None
     gplus_publisher = None
+    page_header = None
+    banner = None
+    robots = None
 
     def __init__(self, **kwargs):
         self.use_sites = settings.USE_SITES
@@ -195,6 +203,9 @@ class MetadataMixin(object):
     def get_meta_image(self, context=None):
         return self.image
 
+    def get_meta_favicon(self, context=None):
+        return self.favicon
+
     def get_meta_object_type(self, context=None):
         return self.object_type or settings.SITE_TYPE
 
@@ -234,6 +245,15 @@ class MetadataMixin(object):
     def get_meta_locale(self, context=None):
         return self.locale
 
+    def get_meta_page_header(self, context=None):
+        return self.page_header
+
+    def get_meta_banner(self, context=None):
+        return self.banner
+
+    def get_meta_robots(self, context=None):
+        return self.robots
+
     def get_meta(self, context=None):
         return self.get_meta_class()(
             use_og=self.use_og,
@@ -249,6 +269,7 @@ class MetadataMixin(object):
             custom_namespace=self.get_meta_custom_namespace(context=context),
             keywords=self.get_meta_keywords(context=context),
             image=self.get_meta_image(context=context),
+            favicon=self.get_meta_favicon(context=context),
             url=self.get_meta_url(context=context),
             object_type=self.get_meta_object_type(context=context),
             site_name=self.get_meta_site_name(context=context),
@@ -260,6 +281,9 @@ class MetadataMixin(object):
             gplus_type=self.get_meta_gplus_type(context=context),
             gplus_author=self.get_meta_gplus_author(context=context),
             gplus_publisher=self.get_meta_gplus_publisher(context=context),
+            page_header=self.get_meta_page_header(context=context),
+            banner=self.get_meta_robots(context=banner),
+            robots=self.get_meta_robots(context=context),
         )
 
     def get_context_data(self, **kwargs):

@@ -8,8 +8,13 @@ SITE_PROTOCOL = getattr(django_settings, 'META_SITE_PROTOCOL', None)
 SITE_DOMAIN = getattr(django_settings, 'META_SITE_DOMAIN', None)
 SITE_TYPE = getattr(django_settings, 'META_SITE_TYPE', None)
 SITE_NAME = getattr(django_settings, 'META_SITE_NAME', None)
+DEFAULT_TITLE = getattr(django_settings, 'META_DEFAULT_TITLE', None)
+DEFAULT_DESCRIPTION = getattr(django_settings, 'META_DEFAULT_DESCRIPTION', None)
+DEFAULT_EXTRA_PROPS = getattr(django_settings, 'META_DEFAULT_EXTRA_PROPS', [])
+DEFAULT_EXTRA_CUSTOM_PROPS = getattr(django_settings, 'META_DEFAULT_EXTRA_CUSTOM_PROPS', [])
 INCLUDE_KEYWORDS = getattr(django_settings, 'META_INCLUDE_KEYWORDS', [])
 DEFAULT_KEYWORDS = getattr(django_settings, 'META_DEFAULT_KEYWORDS', [])
+FAVICON_URL = getattr(django_settings, 'META_DEFAULT_FAVICON', None)
 IMAGE_URL = getattr(django_settings, 'META_IMAGE_URL', django_settings.STATIC_URL)
 USE_OG_PROPERTIES = getattr(django_settings, 'META_USE_OG_PROPERTIES', False)
 USE_TWITTER_PROPERTIES = getattr(django_settings, 'META_USE_TWITTER_PROPERTIES', False)
@@ -18,6 +23,9 @@ USE_GOOGLEPLUS_PROPERTIES = getattr(django_settings, 'META_USE_GOOGLEPLUS_PROPER
 USE_SITES = getattr(django_settings, 'META_USE_SITES', False)
 USE_TITLE_TAG = getattr(django_settings, 'META_USE_TITLE_TAG', False)
 OG_NAMESPACES = getattr(django_settings, 'META_OG_NAMESPACES', None)
+DEFAULT_PAGE_HEADER = getattr(django_settings, 'META_DEFAULT_PAGE_HEADER', None)
+DEFAULT_BANNER = getattr(django_settings, 'META_DEFAULT_BANNER', None)
+DEFAULT_ROBOTS = getattr(django_settings, 'META_DEFAULT_ROBOTS', None)
 
 OBJECT_TYPES = (
     ('Article', _('Article')),

@@ -94,6 +94,32 @@ def custom_meta_extras(extra_custom_props):
 
 
 @register.simple_tag
+def favicon(favicon_link):
+    """
+    Generates a meta tag according to the following markup:
+
+    <link rel="shortcut icon" href="favicon_link">
+
+    :param favicon_link: favicon_link value
+    """
+    return '<link rel="shortcut icon" href="{favicon_link}" >'.format(
+        favicon_link=escape(favicon_link)
+    )
+
+
+@register.simple_tag
+def robots(robots):
+    """
+    Generates a meta tag according to the following markup:
+
+    <link name="robots" content="robots">
+
+    :param robots: robots settings
+    """
+    return custom_meta('name', 'robots', robots)
+
+
+@register.simple_tag
 def title_prop(value):
     """
     Title tag
