@@ -48,7 +48,7 @@ class Meta(object):
         self.fb_pages = kwargs.get('fb_pages', settings.FB_PAGES)
         self.og_app_id = kwargs.get('og_app_id', settings.FB_APPID)
         self.request = kwargs.get('request', None)
-        self.page_header = kwargs.get('page_header', None, settings.DEFAULT_PAGE_HEADER)
+        self.page_header = kwargs.get('page_header', settings.DEFAULT_PAGE_HEADER)
         self.banner = kwargs.get('banner', settings.DEFAULT_BANNER)
         self.robots = kwargs.get('robots', settings.DEFAULT_ROBOTS)
 
@@ -282,7 +282,7 @@ class MetadataMixin(object):
             gplus_author=self.get_meta_gplus_author(context=context),
             gplus_publisher=self.get_meta_gplus_publisher(context=context),
             page_header=self.get_meta_page_header(context=context),
-            banner=self.get_meta_robots(context=banner),
+            banner=self.get_meta_banner(context=context),
             robots=self.get_meta_robots(context=context),
         )
 
